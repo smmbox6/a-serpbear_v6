@@ -233,6 +233,9 @@ class Database extends EventEmitter {
     };
 
     try {
+      if (!this.driver) {
+        throw new Error('Database connection is not initialized');
+      }
       const statement = this.driver.prepare(sql);
       let result;
       if (method === 'run' || method === 'all' || method === 'get') {
@@ -240,7 +243,7 @@ class Database extends EventEmitter {
       } else {
         result = applyStatement(statement, method, preparedBindings);
       }
-      
+
       setImmediate(() => finalCallback.call(context, null, result));
     } catch (error) {
       setImmediate(() => finalCallback.call(context, error));

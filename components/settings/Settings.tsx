@@ -107,18 +107,18 @@ const Settings = forwardRef<HTMLDivElement, SettingsProps>(({ closeSettings }:Se
       } = sanitizedSettings;
       if (notification_interval !== 'never') {
          if (!notification_email) {
-            error = { type: 'no_email', msg: 'Insert a Valid Email address' };
+            error = { type: 'no_email', msg: t.settings.notification.noEmail };
          }
          if (notification_email && (!smtp_port || !smtp_server || !notification_email_from)) {
                let type = 'no_smtp_from';
                if (!smtp_port) { type = 'no_smtp_port'; }
                if (!smtp_server) { type = 'no_smtp_server'; }
-               error = { type, msg: 'Insert SMTP Server details that will be used to send the emails.' };
+               error = { type, msg: t.settings.notification.noSMTP };
          }
       }
 
       if (scraper_type !== 'proxy' && scraper_type !== 'none' && !scraping_api) {
-         error = { type: 'no_api_key', msg: 'Insert a Valid API Key or Token for the Scraper Service.' };
+         error = { type: 'no_api_key', msg: t.settings.scraper.noApiKey };
       }
 
       if (error) {

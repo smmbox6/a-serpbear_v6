@@ -24,8 +24,8 @@ const Research: NextPage = () => {
    const { t } = useTranslation();
    const [showSettings, setShowSettings] = useState(false);
    const [showFavorites, setShowFavorites] = useState(false);
-   const [language, setLanguage] = useState('1000');
-   const [country, setCountry] = useState('US');
+   const [language, setLanguage] = useState('1031');
+   const [country, setCountry] = useState('KZ');
    const [seedKeywords, setSeedKeywords] = useState('');
    const settingsNodeRef = useRef<HTMLDivElement>(null);
 
@@ -105,7 +105,7 @@ const Research: NextPage = () => {
                      <SelectField
                         selected={[language]}
                         options={languageOptions}
-                        defaultLabel='All Languages'
+                        defaultLabel={t.research.allCountries}
                         updateField={(updated:string[]) => setLanguage(updated[0])}
                         rounded='rounded'
                         multiple={false}
